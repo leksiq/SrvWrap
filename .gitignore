@@ -1,0 +1,12 @@
+bin/**
+obj/**
+logs/**
+**.log
+**.class
+build/**
+dist/**
+InstallUtil.InstallLog
+/nbproject/private/
+/hellojava/nbproject/private/
+/hellojava/build/
+/hellojava/dist/
