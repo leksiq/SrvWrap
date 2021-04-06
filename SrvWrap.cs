@@ -112,11 +112,12 @@ namespace net.leksi
                 }
                 if (navRuntime.SelectSingleNode("stdout.log") != null)
                 {
-                    if(!Directory.Exists(Path.GetDirectoryName(navRuntime.SelectSingleNode("stdout.log").Value)))
+                    string stdout_log = Regex.Replace(navRuntime.SelectSingleNode("stdout.log").Value, "%([^%]+)%", eval);
+                    if (!Directory.Exists(Path.GetDirectoryName(stdout_log)))
                     {
-                        Directory.CreateDirectory(Path.GetDirectoryName(navRuntime.SelectSingleNode("stdout.log").Value));
+                        Directory.CreateDirectory(Path.GetDirectoryName(stdout_log));
                     }
-                    Console.SetOut(new OutToLog(Console.Out, navRuntime.SelectSingleNode("stdout.log").Value));
+                    Console.SetOut(new OutToLog(Console.Out, stdout_log));
                 }
                 else if (!Environment.UserInteractive)
                 {
@@ -124,11 +125,12 @@ namespace net.leksi
                 }
                 if (navRuntime.SelectSingleNode("error.log") != null)
                 {
-                    if (!Directory.Exists(Path.GetDirectoryName(navRuntime.SelectSingleNode("error.log").Value)))
+                    string error_log = Regex.Replace(navRuntime.SelectSingleNode("error.log").Value, "%([^%]+)%", eval);
+                    if (!Directory.Exists(Path.GetDirectoryName(error_log)))
                     {
-                        Directory.CreateDirectory(Path.GetDirectoryName(navRuntime.SelectSingleNode("error.log").Value));
+                        Directory.CreateDirectory(Path.GetDirectoryName(error_log));
                     }
-                    Console.SetError(new OutToLog(Console.Out, navRuntime.SelectSingleNode("error.log").Value));
+                    Console.SetError(new OutToLog(Console.Out, error_log));
                 }
                 else if (!Environment.UserInteractive)
                 {
