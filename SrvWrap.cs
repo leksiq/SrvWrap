@@ -103,7 +103,7 @@ namespace net.leksi
                 XPathNodeIterator ni = navRuntime.Select("env");
                 while (ni.MoveNext())
                 {
-                    Environment.SetEnvironmentVariable(ni.Current.GetAttribute("name", ""), ni.Current.GetAttribute("value", ""));
+                    Environment.SetEnvironmentVariable(ni.Current.GetAttribute("name", ""), Regex.Replace(ni.Current.GetAttribute("value", ""), "%([^%]+)%", eval));
                 }
                 if (!Environment.UserInteractive)
                 {
