@@ -1,7 +1,7 @@
 # SrvWrap
 A simple utility to install any executable as a Windows Service.
 ## The Configuration File
-The configuration file is a core of separate installation. It is possible to install as many as needed services using a separate configuration file for each. Each configuration file should be at a separate directory. The executable srvwrap.exe should not be copied.
+The configuration file is a core of separate installation. It is possible to install as many as needed services using a separate configuration file for each. Each configuration file should be at a separate directory and have fixed name `srvwrap.config.exe`. The executable srvwrap.exe should not be copied.
 ````
 <?xml version="1.0" encoding="utf-8" ?>
 <configuration>
@@ -48,6 +48,7 @@ A configuration file consists of three elements: `<service/>`, `<runtime/>` and 
 2. Run .NET's InstallUtil with srvwrap.exe as an argument.
 
 For example:
+Suppose we have the configuration file `srvwrap.config.exe` at F:\leksi\tmp and `srvwrap.exe` at F:\leksi\C#\srvwrap\bin\Debug.
 ````
 C:>cd /d F:\leksi\tmp
 F:\leksi\tmp> C:\Windows\Microsoft.NET\Framework64\v4.0.30319\InstallUtil.exe F:\leksi\C#\srvwrap\bin\Debug\srvwrap.exe 
