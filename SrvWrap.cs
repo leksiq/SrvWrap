@@ -144,7 +144,7 @@ namespace net.leksi
                     proc = new Process();
                     proc.StartInfo.FileName = executable;
                     if(navRuntime.SelectSingleNode("args") != null) {
-                        proc.StartInfo.Arguments = navRuntime.SelectSingleNode("args").Value;
+                        proc.StartInfo.Arguments = Regex.Replace(navRuntime.SelectSingleNode("args").Value, "%([^%]+)%", eval);
                     }
                     proc.StartInfo.WorkingDirectory = Directory.GetCurrentDirectory();
                     proc.StartInfo.CreateNoWindow = true;
